@@ -73,7 +73,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	 */
 	public ClientRMIGUI(){
 			
-		frame = new JFrame("Client Chat Console");	
+		frame = new JFrame("Console do Cliente");	
 	
 		//-----------------------------------------
 		/*
@@ -86,7 +86,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 		        
 		    	if(chatClient != null){
 			    	try {
-			        	sendMessage("Bye all, I am leaving");
+			        	sendMessage("Tchau, estou saindo");
 			        	chatClient.serverIF.leaveChat(name);
 					} catch (RemoteException e) {
 						e.printStackTrace();
@@ -171,7 +171,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 		userPanel.add(userLabel, BorderLayout.NORTH);	
 		userLabel.setFont(new Font("Meiryo", Font.PLAIN, 16));
 
-		String[] noClientsYet = {"No other users"};
+		String[] noClientsYet = {"Sem outros usuarios"};
 		setClientPanel(noClientsYet);
 
 		clientPanel.setFont(meiryoFont);
