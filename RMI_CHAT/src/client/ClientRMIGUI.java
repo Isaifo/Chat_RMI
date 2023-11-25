@@ -73,7 +73,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	 */
 	public ClientRMIGUI(){
 			
-		frame = new JFrame("Client Chat Console");	
+		frame = new JFrame("Chat do console do cliente");	
 	
 		//-----------------------------------------
 		/*
