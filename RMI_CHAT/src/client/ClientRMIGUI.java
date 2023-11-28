@@ -171,7 +171,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 		userPanel.add(userLabel, BorderLayout.NORTH);	
 		userLabel.setFont(new Font("Meiryo", Font.PLAIN, 16));
 
-		String[] noClientsYet = {"No other users"};
+		String[] noClientsYet = {"Não há outros usuários no momento"};
 		setClientPanel(noClientsYet);
 
 		clientPanel.setFont(meiryoFont);
@@ -244,9 +244,9 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 			if(e.getSource() == startButton){
 				name = textField.getText();				
 				if(name.length() != 0){
-					frame.setTitle(name + "'s console ");
+					frame.setTitle("Console do " + name);
 					textField.setText("");
-					textArea.append("username : " + name + " connecting to chat...\n");							
+					textArea.append("usuário : " + name + " conectando no chat...\n");							
 					getConnected(name);
 					if(!chatClient.connectionProblem){
 						startButton.setEnabled(false);
@@ -254,7 +254,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 						}
 				}
 				else{
-					JOptionPane.showMessageDialog(frame, "Enter your name to Start");
+					JOptionPane.showMessageDialog(frame, "Digite seu nome para iniciar");
 				}
 			}
 
@@ -263,7 +263,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 				message = textField.getText();
 				textField.setText("");
 				sendMessage(message);
-				System.out.println("Sending message : " + message);
+				System.out.println("Enviando mensagem : " + message);
 			}
 			
 			//send a private message, to selected users
@@ -271,7 +271,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 				int[] privateList = list.getSelectedIndices();
 				
 				for(int i=0; i<privateList.length; i++){
-					System.out.println("selected index :" + privateList[i]);
+					System.out.println("Indíce selecionado :" + privateList[i]);
 				}
 				message = textField.getText();
 				textField.setText("");
@@ -302,7 +302,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	 * @throws RemoteException
 	 */
 	private void sendPrivate(int[] privateList) throws RemoteException {
-		String privateMessage = "[PM from " + name + "] :" + message + "\n";
+		String privateMessage = "[Mensagem privada de " + name + "] :" + message + "\n";
 		chatClient.serverIF.sendPM(privateList, privateMessage);
 	}
 	
