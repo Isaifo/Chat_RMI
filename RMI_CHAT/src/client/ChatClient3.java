@@ -58,8 +58,8 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 		} 
 		catch (ConnectException  e) {
 			JOptionPane.showMessageDialog(
-					chatGUI.frame, "The server seems to be unavailable\nPlease try later",
-					"Connection problem", JOptionPane.ERROR_MESSAGE);
+					chatGUI.frame, " servidor parece estar indisponível\nPor favor tente novamente mais tarde",
+					"Problema de conexão", JOptionPane.ERROR_MESSAGE);
 			connectionProblem = true;
 			e.printStackTrace();
 		}
@@ -70,7 +70,7 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 		if(!connectionProblem){
 			registerWithServer(details);
 		}	
-		System.out.println("Client Listen RMI Server is running...\n");
+		System.out.println("O servidor RMI está escutando o cliente...\n");
 	}
 
 

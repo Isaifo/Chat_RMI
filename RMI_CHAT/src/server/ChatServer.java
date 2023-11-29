@@ -45,10 +45,10 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 		try{
 			ChatServerIF hello = new ChatServer();
 			Naming.rebind("rmi://" + hostName + "/" + serviceName, hello);
-			System.out.println("Group Chat RMI Server is running...");
+			System.out.println("Servidor RMI go chat em grupo está executando...");
 		}
 		catch(Exception e){
-			System.out.println("Server had problems starting");
+			System.out.println("Erro na inicialização do servidor");
 		}	
 	}
 
@@ -59,7 +59,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	public static void startRMIRegistry() {
 		try{
 			java.rmi.registry.LocateRegistry.createRegistry(1099);
-			System.out.println("RMI Server ready");
+			System.out.println("Servidor RMI pronto");
 		}
 		catch(RemoteException e) {
 			e.printStackTrace();
@@ -76,8 +76,8 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	 * Return a message to client
 	 */
 	public String sayHello(String ClientName) throws RemoteException {
-		System.out.println(ClientName + " sent a message");
-		return "Hello " + ClientName + " from group chat server";
+		System.out.println(ClientName + " enviou uma mensagem");
+		return "Olá " + ClientName + " do servidor de chat em grupo";
 	}
 	
 
@@ -111,9 +111,9 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	@Override
 	public void registerListener(String[] details) throws RemoteException {	
 		System.out.println(new Date(System.currentTimeMillis()));
-		System.out.println(details[0] + " has joined the chat session");
-		System.out.println(details[0] + "'s hostname : " + details[1]);
-		System.out.println(details[0] + "'sRMI service : " + details[2]);
+		System.out.println(details[0] + " entrou na conversa");
+		System.out.println(details[0] + "nome do host : " + details[1]);
+		System.out.println(details[0] + "serviço RMI : " + details[2]);
 		registerChatter(details);
 	}
 
@@ -130,9 +130,9 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 			
 			chatters.addElement(new Chatter(details[0], nextClient));
 			
-			nextClient.messageFromServer("[Server] : Hello " + details[0] + " you are now free to chat.\n");
+			nextClient.messageFromServer("[Servidor] : Olá " + details[0] + " agora você pode conversar.\n");
 			
-			sendToAll("[Server] : " + details[0] + " has joined the group.\n");
+			sendToAll("[Servidor] : " + details[0] + " entrou no grupo.\n");
 			
 			updateUserList();		
 		}
