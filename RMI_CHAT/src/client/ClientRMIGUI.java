@@ -165,7 +165,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	public JPanel getUsersPanel(){
 		
 		userPanel = new JPanel(new BorderLayout());
-		String  userStr = " Current Users      ";
+		String  userStr = "Usuários online";
 		
 		JLabel userLabel = new JLabel(userStr, JLabel.CENTER);
 		userPanel.add(userLabel, BorderLayout.NORTH);	
@@ -213,15 +213,15 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	 * @return
 	 */
 	public JPanel makeButtonPanel() {		
-		sendButton = new JButton("Send ");
+		sendButton = new JButton("Enviar");
 		sendButton.addActionListener(this);
 		sendButton.setEnabled(false);
 
-        privateMsgButton = new JButton("Send PM");
+        privateMsgButton = new JButton("Enviar PV");
         privateMsgButton.addActionListener(this);
         privateMsgButton.setEnabled(false);
 		
-		startButton = new JButton("Start ");
+		startButton = new JButton("Começar");
 		startButton.addActionListener(this);
 		
 		JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
