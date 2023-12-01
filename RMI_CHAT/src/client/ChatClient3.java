@@ -10,16 +10,8 @@ import javax.swing.JOptionPane;
 
 import server.ChatServerIF;
 
-/**
- * 
- * @author Daragh Walshe 	B00064428
- * RMI Assignment 2		 	April 2015
- *
- */
 public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7468891722773409712L;
 	ClientRMIGUI chatGUI;
 	private String hostName = "localhost";

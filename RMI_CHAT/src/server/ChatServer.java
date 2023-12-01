@@ -11,12 +11,6 @@ import java.util.Vector;
 
 import client.ChatClient3IF;
 
-/**
- * 
- * @author Daragh Walshe 	B00064428
- * RMI Assignment 2		 	April 2015
- *
- */
 public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	String line = "---------------------------------------------\n";
 	private Vector<Chatter> chatters;
@@ -196,7 +190,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 		
 		for(Chatter c : chatters){
 			if(c.getName().equals(userName)){
-				System.out.println(line + userName + " left the chat session");
+				System.out.println(line + userName + " saiu da conversa");
 				System.out.println(new Date(System.currentTimeMillis()));
 				chatters.remove(c);
 				break;
@@ -222,7 +216,6 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 		}
 	}
 	
-}//END CLASS
-
+}
 
 

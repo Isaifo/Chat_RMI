@@ -25,12 +25,6 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 
-/**
- * 
- * @author Daragh Walshe 	B00064428
- * RMI Assignment 2		 	April 2015
- *
- */
 public class ClientRMIGUI extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;	
@@ -73,7 +67,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	 */
 	public ClientRMIGUI(){
 			
-		frame = new JFrame("Chat do console do cliente");	
+		frame = new JFrame("Chat do cliente");	
 	
 		//-----------------------------------------
 		/*
@@ -244,7 +238,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 			if(e.getSource() == startButton){
 				name = textField.getText();				
 				if(name.length() != 0){
-					frame.setTitle("Console do " + name);
+					frame.setTitle("Console de " + name);
 					textField.setText("");
 					textArea.append("usuário : " + name + " conectando no chat...\n");							
 					getConnected(name);
