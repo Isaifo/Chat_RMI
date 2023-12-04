@@ -20,12 +20,8 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 	private String name;
 	protected ChatServerIF serverIF;
 	protected boolean connectionProblem = false;
-
 	
 	/**
-	 * class constructor,
-	 * note may also use an overloaded constructor with 
-	 * a port no passed in argument to super
 	 * @throws RemoteException
 	 */
 	public ChatClient3(ClientRMIGUI aChatGUI, String userName) throws RemoteException {
@@ -37,8 +33,8 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 
 	
 	/**
-	 * Register our own listening service/interface
-	 * lookup the server RMI interface, then send our details
+	 * Registra nosso serviço de escuta
+	 * Procura o servidor e enviar nossas informações
 	 * @throws RemoteException
 	 */
 	public void startClient() throws RemoteException {		
@@ -83,9 +79,9 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 
 	//=====================================================================
 	/**
-	 * Receive a string from the chat server
-	 * this is the clients RMI method, which will be used by the server 
-	 * to send messages to us
+	 * Recebe string do servidor
+	 * Método RMI do cliente para o servidor enviar mensagem para usuarios
+	 * 
 	 */
 	@Override
 	public void messageFromServer(String message) throws RemoteException {
@@ -96,8 +92,8 @@ public class ChatClient3  extends UnicastRemoteObject implements ChatClient3IF {
 	}
 
 	/**
-	 * A method to update the display of users 
-	 * currently connected to the server
+	 * Atualizar a exibição de usuários
+	 * atualmente conectados
 	 */
 	@Override
 	public void updateUserList(String[] currentUsers) throws RemoteException {

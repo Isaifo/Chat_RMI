@@ -16,16 +16,11 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	private Vector<Chatter> chatters;
 	private static final long serialVersionUID = 1L;
 	
-	//Constructor
 	public ChatServer() throws RemoteException {
 		super();
 		chatters = new Vector<Chatter>(10, 1);
 	}
 	
-	//-----------------------------------------------------------
-	/**
-	 * LOCAL METHODS
-	 */	
 	public static void main(String[] args) {
 		startRMIRegistry();	
 		String hostName = "localhost";
@@ -39,7 +34,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 		try{
 			ChatServerIF hello = new ChatServer();
 			Naming.rebind("rmi://" + hostName + "/" + serviceName, hello);
-			System.out.println("Servidor RMI go chat em grupo está executando...");
+			System.out.println("Servidor RMI chat em grupo está executando...");
 		}
 		catch(Exception e){
 			System.out.println("Erro na inicialização do servidor");
@@ -48,7 +43,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 
 	
 	/**
-	 * Start the RMI Registry
+	 * Inicia o registro RMI
 	 */
 	public static void startRMIRegistry() {
 		try{
@@ -61,13 +56,8 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	}
 		
 	
-	//-----------------------------------------------------------
-	/*
-	 *   REMOTE METHODS
-	 */
-	
 	/**
-	 * Return a message to client
+	 * Retorna mensagem ao cliente
 	 */
 	public String sayHello(String ClientName) throws RemoteException {
 		System.out.println(ClientName + " enviou uma mensagem");
@@ -76,8 +66,8 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	
 
 	/**
-	 * Send a string ( the latest post, mostly ) 
-	 * to all connected clients
+	 * Envia mensagem para todos do chat
+	 * 
 	 */
 	public void updateChat(String name, String nextPost) throws RemoteException {
 		String message =  name + " : " + nextPost + "\n";
@@ -85,7 +75,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	}
 	
 	/**
-	 * Receive a new client remote reference
+	 * Recebe nova referencia do cliente
 	 */
 	@Override
 	public void passIDentity(RemoteRef ref) throws RemoteException {	
@@ -99,8 +89,8 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 
 	
 	/**
-	 * Receive a new client and display details to the console
-	 * send on to register method
+	 * Recebe novo cliente e exibe os detalhes
+	 * 
 	 */
 	@Override
 	public void registerListener(String[] details) throws RemoteException {	
@@ -113,9 +103,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 
 	
 	/**
-	 * register the clients interface and store it in a reference for 
-	 * future messages to be sent to, ie other members messages of the chat session.
-	 * send a test message for confirmation / test connection
+	 * registra os clientes
 	 * @param details
 	 */
 	private void registerChatter(String[] details){		
@@ -125,7 +113,6 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 			chatters.addElement(new Chatter(details[0], nextClient));
 			
 			nextClient.messageFromServer("[Servidor] : Olá " + details[0] + " agora você pode conversar.\n");
-			
 			sendToAll("[Servidor] : " + details[0] + " entrou no grupo.\n");
 			
 			updateUserList();		
@@ -136,8 +123,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	}
 	
 	/**
-	 * Update all clients by remotely invoking their
-	 * updateUserList RMI method
+     * atualiza os cliente
 	 */
 	private void updateUserList() {
 		String[] currentUsers = getUserList();	
@@ -153,7 +139,6 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	
 
 	/**
-	 * generate a String array of current users
 	 * @return
 	 */
 	private String[] getUserList(){
@@ -167,7 +152,7 @@ public class ChatServer extends UnicastRemoteObject implements ChatServerIF {
 	
 
 	/**
-	 * Send a message to all users
+	 * Envia mensagem para todos usuarios
 	 * @param newMessage
 	 */
 	public void sendToAll(String newMessage){	

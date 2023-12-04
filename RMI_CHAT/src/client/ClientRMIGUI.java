@@ -41,9 +41,9 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
     protected JFrame frame;
     protected JButton privateMsgButton, startButton, sendButton;
     protected JPanel clientPanel, userPanel;
+    
 
 	/**
-	 * Main method to start client GUI app.
 	 * @param args
 	 */
 	public static void main(String args[]){
@@ -71,8 +71,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	
 		//-----------------------------------------
 		/*
-		 * intercept close method, inform server we are leaving
-		 * then let the system exit.
+		 * Informar ao servidor que estamos saindo do chat
 		 */
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
@@ -89,12 +88,6 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 		        System.exit(0);  
 		    }   
 		});
-		//-----------------------------------------
-		//remove window buttons and border frame
-		//to force user to exit on a button
-		//- one way to control the exit behaviour
-	    //frame.setUndecorated(true);
-	    //frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
 	
 		Container c = getContentPane();
 		JPanel outerPanel = new JPanel(new BorderLayout());
@@ -118,7 +111,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * Method to set up the JPanel to display the chat text
+	 * Configurar jpanel para exibir o texto do chat
 	 * @return
 	 */
 	public JPanel getTextPanel(){
@@ -139,7 +132,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Method to build the panel with input field
+	 * Construir o painal com input
 	 * @return inputPanel
 	 */
 	public JPanel getInputPanel(){
@@ -152,8 +145,8 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Method to build the panel displaying currently connected users
-	 * with a call to the button panel building method
+	 * Exibir os usuarios
+	 * 
 	 * @return
 	 */
 	public JPanel getUsersPanel(){
@@ -176,8 +169,8 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Populate current user panel with a 
-	 * selectable list of currently connected users
+	 * Preencher painel de usuario atual
+	 *  com lista de usuario conectados
 	 * @param currClients
 	 */
     public void setClientPanel(String[] currClients) {  	
@@ -203,7 +196,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
     }
 	
 	/**
-	 * Make the buttons and add the listener
+	 * Botoes
 	 * @return
 	 */
 	public JPanel makeButtonPanel() {		
@@ -228,7 +221,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Action handling on the buttons
+	 * Lidar com acoes nos botoes
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e){
@@ -277,12 +270,12 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 			remoteExc.printStackTrace();	
 		}
 		
-	}//end actionPerformed
+	}
 
 	// --------------------------------------------------------------------
 	
 	/**
-	 * Send a message, to be relayed to all chatters
+	 * Envia mensagem para todos
 	 * @param chatMessage
 	 * @throws RemoteException
 	 */
@@ -291,7 +284,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Send a message, to be relayed, only to selected chatters
+	 * Enviaa mensagem privada
 	 * @param chatMessage
 	 * @throws RemoteException
 	 */
@@ -301,12 +294,11 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Make the connection to the chat server
+	 * Faz a conexao com o servidor
 	 * @param userName
 	 * @throws RemoteException
 	 */
 	private void getConnected(String userName) throws RemoteException{
-		//remove whitespace and non word characters to avoid malformed url
 		String cleanedUserName = userName.replaceAll("\\s+","_");
 		cleanedUserName = userName.replaceAll("\\W+","_");
 		try {		
@@ -317,7 +309,7 @@ public class ClientRMIGUI extends JFrame implements ActionListener{
 		}
 	}
 
-}//end class
+}
 
 
 
